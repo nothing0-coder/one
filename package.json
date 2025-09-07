@@ -2,17 +2,34 @@
   "name": "one",
   "version": "1.0.0",
   "description": "A project with Supabase integration",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js",
-    "format": "prettier --write ."
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.57.2",
-    "supabase": "^2.39.2"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "prettier": "^3.6.2"
+    "@testing-library/jest-dom": "^6.2.1",
+    "@testing-library/react": "^16.0.1",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "jsdom": "^23.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.1.0",
+    "vite-plugin-visualizer": "^2.8.0",
+    "vitest": "^1.2.0"
   }
 }
