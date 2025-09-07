@@ -1,9 +1,17 @@
-import { motion } from 'motion/react';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
-import { Badge } from './ui/badge';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import { ArrowRight, Users, Calculator, Smartphone, PieChart, Shield, Zap } from 'lucide-react';
+import { motion } from "motion/react";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import {
+  ArrowRight,
+  Users,
+  Calculator,
+  Smartphone,
+  PieChart,
+  Shield,
+  Zap,
+} from "lucide-react";
 
 interface LandingPageProps {
   onEnterApp: () => void;
@@ -13,54 +21,58 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   };
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const features = [
     {
       icon: Calculator,
       title: "Smart Splitting",
-      description: "Automatically calculate expenses with custom ratios, tips, and taxes."
+      description:
+        "Automatically calculate expenses with custom ratios, tips, and taxes.",
     },
     {
       icon: Users,
       title: "Group Management",
-      description: "Create groups for trips, roommates, or any shared expenses."
+      description:
+        "Create groups for trips, roommates, or any shared expenses.",
     },
     {
       icon: PieChart,
       title: "Visual Reports",
-      description: "Beautiful charts and insights to track your spending patterns."
+      description:
+        "Beautiful charts and insights to track your spending patterns.",
     },
     {
       icon: Shield,
       title: "Secure & Private",
-      description: "Your financial data is encrypted and never shared with third parties."
+      description:
+        "Your financial data is encrypted and never shared with third parties.",
     },
     {
       icon: Zap,
       title: "Lightning Fast",
-      description: "Split expenses in seconds with our intuitive interface."
+      description: "Split expenses in seconds with our intuitive interface.",
     },
     {
       icon: Smartphone,
       title: "Mobile First",
-      description: "Designed for mobile with offline support and instant sync."
-    }
+      description: "Designed for mobile with offline support and instant sync.",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/20">
       {/* Header */}
-      <motion.header 
+      <motion.header
         className="container mx-auto px-4 py-6 flex items-center justify-between"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -84,8 +96,8 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
             ✨ The smart way to split expenses
           </Badge>
         </motion.div>
-        
-        <motion.h1 
+
+        <motion.h1
           className="text-4xl md:text-6xl lg:text-7xl mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent leading-tight"
           {...fadeInUp}
         >
@@ -95,21 +107,22 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
             effortlessly
           </span>
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
           {...fadeInUp}
         >
-          Never argue about money again. SplitEasy makes it simple to track shared expenses, 
-          split bills fairly, and settle up with friends and family.
+          Never argue about money again. SplitEasy makes it simple to track
+          shared expenses, split bills fairly, and settle up with friends and
+          family.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           {...fadeInUp}
         >
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="w-full sm:w-auto group"
             onClick={onEnterApp}
           >
@@ -122,7 +135,7 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
         </motion.div>
 
         {/* Hero Image */}
-        <motion.div 
+        <motion.div
           className="relative max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -139,7 +152,7 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
 
       {/* Features Section */}
       <section className="container mx-auto px-4 py-20">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -148,14 +161,18 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
         >
           <h2 className="text-3xl md:text-4xl mb-4">
             Everything you need to
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> split smart</span>
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {" "}
+              split smart
+            </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Powerful features designed to make expense splitting simple, fair, and stress-free.
+            Powerful features designed to make expense splitting simple, fair,
+            and stress-free.
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={staggerContainer}
           initial="initial"
@@ -178,7 +195,7 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
 
       {/* CTA Section */}
       <section className="container mx-auto px-4 py-20">
-        <motion.div 
+        <motion.div
           className="bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-3xl p-8 md:p-16 text-center backdrop-blur-sm border border-border/50"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -187,17 +204,17 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
         >
           <h2 className="text-3xl md:text-4xl mb-4">
             Ready to split expenses
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> the smart way?</span>
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {" "}
+              the smart way?
+            </span>
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of users who have simplified their shared expenses with SplitEasy.
+            Join thousands of users who have simplified their shared expenses
+            with SplitEasy.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="group"
-              onClick={onEnterApp}
-            >
+            <Button size="lg" className="group" onClick={onEnterApp}>
               Start Splitting Now
               <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
@@ -215,12 +232,20 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Calculator className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="text-sm text-muted-foreground">© 2025 SplitEasy. All rights reserved.</span>
+            <span className="text-sm text-muted-foreground">
+              © 2025 SplitEasy. All rights reserved.
+            </span>
           </div>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-            <a href="#" className="hover:text-foreground transition-colors">Terms</a>
-            <a href="#" className="hover:text-foreground transition-colors">Support</a>
+            <a href="#" className="hover:text-foreground transition-colors">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-foreground transition-colors">
+              Terms
+            </a>
+            <a href="#" className="hover:text-foreground transition-colors">
+              Support
+            </a>
           </div>
         </div>
       </footer>

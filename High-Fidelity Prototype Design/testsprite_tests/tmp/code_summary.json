@@ -35,8 +35,8 @@
                     "schema": {
                       "type": "object",
                       "properties": {
-                        "email": {"type": "string", "format": "email"},
-                        "password": {"type": "string"}
+                        "email": { "type": "string", "format": "email" },
+                        "password": { "type": "string" }
                       },
                       "required": ["email", "password"]
                     }
@@ -62,9 +62,9 @@
                     "schema": {
                       "type": "object",
                       "properties": {
-                        "email": {"type": "string", "format": "email"},
-                        "password": {"type": "string"},
-                        "name": {"type": "string"}
+                        "email": { "type": "string", "format": "email" },
+                        "password": { "type": "string" },
+                        "name": { "type": "string" }
                       },
                       "required": ["email", "password", "name"]
                     }

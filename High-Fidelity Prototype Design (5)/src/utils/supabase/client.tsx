@@ -1,9 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-import { projectId, publicAnonKey } from './info';
+import { createClient } from "@supabase/supabase-js";
+import { projectId, publicAnonKey } from "./info";
 
 export const supabase = createClient(
   `https://${projectId}.supabase.co`,
-  publicAnonKey
+  publicAnonKey,
 );
 
 export const apiUrl = `https://${projectId}.supabase.co/functions/v1/make-server-dcdac55e`;
@@ -13,12 +13,12 @@ export const api = {
   // Auth
   async signup(email: string, password: string, name: string) {
     const response = await fetch(`${apiUrl}/auth/signup`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${publicAnonKey}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${publicAnonKey}`,
       },
-      body: JSON.stringify({ email, password, name })
+      body: JSON.stringify({ email, password, name }),
     });
     return response.json();
   },
@@ -37,7 +37,10 @@ export const api = {
   },
 
   async getSession() {
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
     return { session, error };
   },
 
@@ -45,20 +48,20 @@ export const api = {
   async getProfile(accessToken: string) {
     const response = await fetch(`${apiUrl}/user/profile`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     return response.json();
   },
 
   async updateProfile(accessToken: string, updates: any) {
     const response = await fetch(`${apiUrl}/user/profile`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify(updates)
+      body: JSON.stringify(updates),
     });
     return response.json();
   },
@@ -66,12 +69,12 @@ export const api = {
   // Groups
   async createGroup(accessToken: string, name: string, description: string) {
     const response = await fetch(`${apiUrl}/groups`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({ name, description })
+      body: JSON.stringify({ name, description }),
     });
     return response.json();
   },
@@ -79,20 +82,25 @@ export const api = {
   async getGroups(accessToken: string) {
     const response = await fetch(`${apiUrl}/groups`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     return response.json();
   },
 
-  async addGroupMember(accessToken: string, groupId: string, email: string, name: string) {
+  async addGroupMember(
+    accessToken: string,
+    groupId: string,
+    email: string,
+    name: string,
+  ) {
     const response = await fetch(`${apiUrl}/groups/${groupId}/members`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({ email, name })
+      body: JSON.stringify({ email, name }),
     });
     return response.json();
   },
@@ -100,8 +108,8 @@ export const api = {
   async getGroupMembers(accessToken: string, groupId: string) {
     const response = await fetch(`${apiUrl}/groups/${groupId}/members`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     return response.json();
   },
@@ -109,22 +117,24 @@ export const api = {
   // Expenses
   async createExpense(accessToken: string, expense: any) {
     const response = await fetch(`${apiUrl}/expenses`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify(expense)
+      body: JSON.stringify(expense),
     });
     return response.json();
   },
 
   async getExpenses(accessToken: string, groupId?: string) {
-    const url = groupId ? `${apiUrl}/expenses?groupId=${groupId}` : `${apiUrl}/expenses`;
+    const url = groupId
+      ? `${apiUrl}/expenses?groupId=${groupId}`
+      : `${apiUrl}/expenses`;
     const response = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     return response.json();
   },
@@ -133,9 +143,9 @@ export const api = {
   async getDashboardStats(accessToken: string) {
     const response = await fetch(`${apiUrl}/dashboard/stats`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     return response.json();
-  }
+  },
 };

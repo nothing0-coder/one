@@ -1,5 +1,11 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { api } from '../utils/supabase/client';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
+import { api } from "../utils/supabase/client";
 
 interface User {
   id: string;
@@ -12,7 +18,11 @@ interface AuthContextType {
   accessToken: string | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error?: any }>;
-  signUp: (email: string, password: string, name: string) => Promise<{ error?: any }>;
+  signUp: (
+    email: string,
+    password: string,
+    name: string,
+  ) => Promise<{ error?: any }>;
   signOut: () => Promise<void>;
 }
 
@@ -35,11 +45,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser({
           id: session.user.id,
           email: session.user.email!,
-          name: session.user.user_metadata?.name
+          name: session.user.user_metadata?.name,
         });
       }
     } catch (error) {
-      console.log('Session check error:', error);
+      console.log("Session check error:", error);
     } finally {
       setLoading(false);
     }
@@ -51,16 +61,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (error) {
         return { error };
       }
-      
+
       if (data.session?.access_token) {
         setAccessToken(data.session.access_token);
         setUser({
           id: data.user.id,
           email: data.user.email!,
-          name: data.user.user_metadata?.name
+          name: data.user.user_metadata?.name,
         });
       }
-      
+
       return {};
     } catch (error) {
       return { error };
@@ -73,7 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (result.error) {
         return { error: result.error };
       }
-      
+
       // After signup, automatically sign in
       return await signIn(email, password);
     } catch (error) {
@@ -87,7 +97,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(null);
       setAccessToken(null);
     } catch (error) {
-      console.log('Sign out error:', error);
+      console.log("Sign out error:", error);
     }
   };
 
@@ -97,20 +107,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     loading,
     signIn,
     signUp,
-    signOut
+    signOut,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }

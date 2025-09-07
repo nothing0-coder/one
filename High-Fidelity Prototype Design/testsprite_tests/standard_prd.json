@@ -87,10 +87,7 @@
                             "type": "string"
                           }
                         },
-                        "required": [
-                          "email",
-                          "password"
-                        ]
+                        "required": ["email", "password"]
                       }
                     }
                   }
@@ -125,11 +122,7 @@
                             "type": "string"
                           }
                         },
-                        "required": [
-                          "email",
-                          "password",
-                          "name"
-                        ]
+                        "required": ["email", "password", "name"]
                       }
                     }
                   }

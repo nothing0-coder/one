@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { Avatar, AvatarFallback } from './ui/avatar';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Switch } from './ui/switch';
-import { Separator } from './ui/separator';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  Settings, 
-  Bell, 
-  Shield, 
+import { useState } from "react";
+import { motion } from "motion/react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Switch } from "./ui/switch";
+import { Separator } from "./ui/separator";
+import {
+  User,
+  Mail,
+  Phone,
+  Settings,
+  Bell,
+  Shield,
   CreditCard,
   Download,
   LogOut,
@@ -24,70 +24,70 @@ import {
   DollarSign,
   TrendingUp,
   Users,
-  Calendar
-} from 'lucide-react';
+  Calendar,
+} from "lucide-react";
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [editedProfile, setEditedProfile] = useState({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+1 (555) 123-4567'
+    name: "John Doe",
+    email: "john.doe@example.com",
+    phone: "+1 (555) 123-4567",
   });
 
   const [notifications, setNotifications] = useState({
     expenseUpdates: true,
     paymentReminders: true,
     groupInvites: true,
-    weeklyReports: false
+    weeklyReports: false,
   });
 
   const userStats = [
     {
-      label: 'Total Groups',
-      value: '4',
+      label: "Total Groups",
+      value: "4",
       icon: Users,
-      color: 'text-blue-600'
+      color: "text-blue-600",
     },
     {
-      label: 'Expenses Created',
-      value: '23',
+      label: "Expenses Created",
+      value: "23",
       icon: DollarSign,
-      color: 'text-green-600'
+      color: "text-green-600",
     },
     {
-      label: 'Amount Tracked',
-      value: '$2,847.50',
+      label: "Amount Tracked",
+      value: "$2,847.50",
       icon: TrendingUp,
-      color: 'text-purple-600'
+      color: "text-purple-600",
     },
     {
-      label: 'Member Since',
-      value: 'Jan 2024',
+      label: "Member Since",
+      value: "Jan 2024",
       icon: Calendar,
-      color: 'text-orange-600'
-    }
+      color: "text-orange-600",
+    },
   ];
 
   const recentActivity = [
     {
       action: 'Created expense "Dinner at Olive Garden"',
-      group: 'Friends Trip',
-      amount: '$89.50',
-      time: '2 hours ago'
+      group: "Friends Trip",
+      amount: "$89.50",
+      time: "2 hours ago",
     },
     {
-      action: 'Settled up with Alice Smith',
-      group: 'Weekend Getaway',
-      amount: '$45.20',
-      time: '1 day ago'
+      action: "Settled up with Alice Smith",
+      group: "Weekend Getaway",
+      amount: "$45.20",
+      time: "1 day ago",
     },
     {
       action: 'Joined group "Office Lunch"',
-      group: 'Office Lunch',
-      amount: '-',
-      time: '3 days ago'
-    }
+      group: "Office Lunch",
+      amount: "-",
+      time: "3 days ago",
+    },
   ];
 
   const handleSaveProfile = () => {
@@ -98,16 +98,16 @@ export default function Profile() {
   const handleCancelEdit = () => {
     setIsEditing(false);
     setEditedProfile({
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      phone: '+1 (555) 123-4567'
+      name: "John Doe",
+      email: "john.doe@example.com",
+      phone: "+1 (555) 123-4567",
     });
   };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
+    transition: { duration: 0.5 },
   };
 
   return (
@@ -115,7 +115,9 @@ export default function Profile() {
       {/* Header */}
       <motion.div {...fadeInUp}>
         <h1 className="text-2xl md:text-3xl mb-2">Profile & Settings</h1>
-        <p className="text-muted-foreground">Manage your account and preferences</p>
+        <p className="text-muted-foreground">
+          Manage your account and preferences
+        </p>
       </motion.div>
 
       <div className="grid lg:grid-cols-3 gap-6">
@@ -128,13 +130,21 @@ export default function Profile() {
                 Personal Information
               </CardTitle>
               {!isEditing ? (
-                <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsEditing(true)}
+                >
                   <Edit className="w-4 h-4 mr-2" />
                   Edit
                 </Button>
               ) : (
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={handleCancelEdit}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCancelEdit}
+                  >
                     <X className="w-4 h-4" />
                   </Button>
                   <Button size="sm" onClick={handleSaveProfile}>
@@ -165,7 +175,12 @@ export default function Profile() {
                     <Input
                       id="name"
                       value={editedProfile.name}
-                      onChange={(e) => setEditedProfile(prev => ({ ...prev, name: e.target.value }))}
+                      onChange={(e) =>
+                        setEditedProfile((prev) => ({
+                          ...prev,
+                          name: e.target.value,
+                        }))
+                      }
                     />
                   ) : (
                     <p className="text-sm py-2">{editedProfile.name}</p>
@@ -178,7 +193,12 @@ export default function Profile() {
                       id="email"
                       type="email"
                       value={editedProfile.email}
-                      onChange={(e) => setEditedProfile(prev => ({ ...prev, email: e.target.value }))}
+                      onChange={(e) =>
+                        setEditedProfile((prev) => ({
+                          ...prev,
+                          email: e.target.value,
+                        }))
+                      }
                     />
                   ) : (
                     <p className="text-sm py-2">{editedProfile.email}</p>
@@ -190,7 +210,12 @@ export default function Profile() {
                     <Input
                       id="phone"
                       value={editedProfile.phone}
-                      onChange={(e) => setEditedProfile(prev => ({ ...prev, phone: e.target.value }))}
+                      onChange={(e) =>
+                        setEditedProfile((prev) => ({
+                          ...prev,
+                          phone: e.target.value,
+                        }))
+                      }
                     />
                   ) : (
                     <p className="text-sm py-2">{editedProfile.phone}</p>
@@ -219,12 +244,17 @@ export default function Profile() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Expense Updates</p>
-                  <p className="text-sm text-muted-foreground">Get notified when expenses are added or updated</p>
+                  <p className="text-sm text-muted-foreground">
+                    Get notified when expenses are added or updated
+                  </p>
                 </div>
                 <Switch
                   checked={notifications.expenseUpdates}
-                  onCheckedChange={(checked) => 
-                    setNotifications(prev => ({ ...prev, expenseUpdates: checked }))
+                  onCheckedChange={(checked) =>
+                    setNotifications((prev) => ({
+                      ...prev,
+                      expenseUpdates: checked,
+                    }))
                   }
                 />
               </div>
@@ -232,12 +262,17 @@ export default function Profile() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Payment Reminders</p>
-                  <p className="text-sm text-muted-foreground">Reminders for outstanding balances</p>
+                  <p className="text-sm text-muted-foreground">
+                    Reminders for outstanding balances
+                  </p>
                 </div>
                 <Switch
                   checked={notifications.paymentReminders}
-                  onCheckedChange={(checked) => 
-                    setNotifications(prev => ({ ...prev, paymentReminders: checked }))
+                  onCheckedChange={(checked) =>
+                    setNotifications((prev) => ({
+                      ...prev,
+                      paymentReminders: checked,
+                    }))
                   }
                 />
               </div>
@@ -245,12 +280,17 @@ export default function Profile() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Group Invites</p>
-                  <p className="text-sm text-muted-foreground">Notifications for new group invitations</p>
+                  <p className="text-sm text-muted-foreground">
+                    Notifications for new group invitations
+                  </p>
                 </div>
                 <Switch
                   checked={notifications.groupInvites}
-                  onCheckedChange={(checked) => 
-                    setNotifications(prev => ({ ...prev, groupInvites: checked }))
+                  onCheckedChange={(checked) =>
+                    setNotifications((prev) => ({
+                      ...prev,
+                      groupInvites: checked,
+                    }))
                   }
                 />
               </div>
@@ -258,12 +298,17 @@ export default function Profile() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Weekly Reports</p>
-                  <p className="text-sm text-muted-foreground">Weekly summary of your expenses</p>
+                  <p className="text-sm text-muted-foreground">
+                    Weekly summary of your expenses
+                  </p>
                 </div>
                 <Switch
                   checked={notifications.weeklyReports}
-                  onCheckedChange={(checked) => 
-                    setNotifications(prev => ({ ...prev, weeklyReports: checked }))
+                  onCheckedChange={(checked) =>
+                    setNotifications((prev) => ({
+                      ...prev,
+                      weeklyReports: checked,
+                    }))
                   }
                 />
               </div>
@@ -292,7 +337,10 @@ export default function Profile() {
                   <CreditCard className="w-4 h-4" />
                   Payment Methods
                 </Button>
-                <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50 flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  className="text-red-600 border-red-200 hover:bg-red-50 flex items-center gap-2"
+                >
                   <LogOut className="w-4 h-4" />
                   Sign Out
                 </Button>
@@ -312,10 +360,14 @@ export default function Profile() {
               {userStats.map((stat, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-lg bg-${stat.color.split('-')[1]}-100 flex items-center justify-center`}>
+                    <div
+                      className={`w-8 h-8 rounded-lg bg-${stat.color.split("-")[1]}-100 flex items-center justify-center`}
+                    >
                       <stat.icon className={`w-4 h-4 ${stat.color}`} />
                     </div>
-                    <span className="text-sm text-muted-foreground">{stat.label}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {stat.label}
+                    </span>
                   </div>
                   <span className="font-medium">{stat.value}</span>
                 </div>
@@ -336,10 +388,14 @@ export default function Profile() {
                     <span>{activity.group}</span>
                     <span>{activity.time}</span>
                   </div>
-                  {activity.amount !== '-' && (
-                    <p className="text-sm font-medium text-green-600">{activity.amount}</p>
+                  {activity.amount !== "-" && (
+                    <p className="text-sm font-medium text-green-600">
+                      {activity.amount}
+                    </p>
                   )}
-                  {index < recentActivity.length - 1 && <Separator className="mt-4" />}
+                  {index < recentActivity.length - 1 && (
+                    <Separator className="mt-4" />
+                  )}
                 </div>
               ))}
             </CardContent>

@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Toaster } from './components/ui/sonner';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import LandingPage from './components/LandingPage';
-import MainApp from './components/MainApp';
-import AuthPage from './components/AuthPage';
-import { Loader2 } from 'lucide-react';
+import { useState } from "react";
+import { Toaster } from "./components/ui/sonner";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import LandingPage from "./components/LandingPage";
+import MainApp from "./components/MainApp";
+import AuthPage from "./components/AuthPage";
+import { Loader2 } from "lucide-react";
 
 function AppContent() {
-  const [currentView, setCurrentView] = useState<'landing' | 'app'>('landing');
+  const [currentView, setCurrentView] = useState<"landing" | "app">("landing");
   const { user, loading } = useAuth();
 
   if (loading) {
@@ -22,10 +22,10 @@ function AppContent() {
   if (user) {
     return (
       <div className="min-h-screen bg-background">
-        {currentView === 'landing' ? (
-          <LandingPage onEnterApp={() => setCurrentView('app')} />
+        {currentView === "landing" ? (
+          <LandingPage onEnterApp={() => setCurrentView("app")} />
         ) : (
-          <MainApp onBackToLanding={() => setCurrentView('landing')} />
+          <MainApp onBackToLanding={() => setCurrentView("landing")} />
         )}
       </div>
     );

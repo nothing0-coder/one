@@ -14,11 +14,13 @@ This directory contains the backend Supabase Edge Functions for the SplitEasy ex
 ### Prerequisites
 
 1. Install the Supabase CLI:
+
    ```bash
    npm install -g supabase
    ```
 
 2. Initialize Supabase in your project (if not already done):
+
    ```bash
    supabase init
    ```
@@ -31,6 +33,7 @@ This directory contains the backend Supabase Edge Functions for the SplitEasy ex
 ### Local Development
 
 1. Start the local Supabase stack:
+
    ```bash
    supabase start
    ```
@@ -50,25 +53,30 @@ The server function will be available at:
 The server function provides the following endpoints:
 
 ### Authentication
+
 - `POST /auth/signup` - User registration
-- `POST /auth/signin` - User login  
+- `POST /auth/signin` - User login
 - `POST /auth/signout` - User logout
 
 ### User Management
+
 - `GET /user/profile` - Get user profile
 - `PUT /user/profile` - Update user profile
 
 ### Groups
+
 - `POST /groups` - Create a new group
 - `GET /groups` - Get user's groups
 - `POST /groups/:id/members` - Add member to group
 - `GET /groups/:id/members` - Get group members
 
 ### Expenses
+
 - `POST /expenses` - Create new expense
 - `GET /expenses` - Get expenses (optionally filtered by group)
 
 ### Dashboard
+
 - `GET /dashboard/stats` - Get dashboard statistics
 
 ## Deployment

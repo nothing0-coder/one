@@ -1,0 +1,18 @@
+{
+  "name": "one",
+  "version": "1.0.0",
+  "description": "A project with Supabase integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.2",
+    "supabase": "^2.39.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
