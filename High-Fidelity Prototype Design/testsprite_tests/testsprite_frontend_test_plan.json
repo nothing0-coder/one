@@ -1,0 +1,443 @@
+[
+  {
+    "id": "TC001",
+    "title": "User Signup with Valid Data",
+    "description": "Verify that a new user can successfully sign up with valid email, password, and name.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call the /auth/signup endpoint with valid email, password, and name."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the response status is 200 and account is created."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the new user data is persisted in the user database."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "User Signup with Missing Required Fields",
+    "description": "Verify that the signup process fails with missing email, password, or name fields.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call the /auth/signup endpoint with missing email field."
+      },
+      {
+        "type": "assertion",
+        "description": "Expect response status 400 with appropriate error message."
+      },
+      {
+        "type": "action",
+        "description": "Call the /auth/signup endpoint with missing password field."
+      },
+      {
+        "type": "assertion",
+        "description": "Expect response status 400 with appropriate error message."
+      },
+      {
+        "type": "action",
+        "description": "Call the /auth/signup endpoint with missing name field."
+      },
+      {
+        "type": "assertion",
+        "description": "Expect response status 400 with appropriate error message."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "User Signin with Correct Credentials",
+    "description": "Verify that an existing user can sign in successfully with correct email and password.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call the /auth/signin endpoint with valid email and password."
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status 200 and session token is returned."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "User Signin with Incorrect Credentials",
+    "description": "Verify signin fails with invalid email or password.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call /auth/signin with incorrect password."
+      },
+      {
+        "type": "assertion",
+        "description": "Expect 400 response with invalid credentials message."
+      },
+      {
+        "type": "action",
+        "description": "Call /auth/signin with unregistered email."
+      },
+      {
+        "type": "assertion",
+        "description": "Expect 400 response with invalid credentials message."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Access Protected Endpoint Without Authentication",
+    "description": "Verify secured endpoints return 401 Unauthorized when no valid session token is provided.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call /app/profile without auth token."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 401 Unauthorized."
+      },
+      {
+        "type": "action",
+        "description": "Call /app/groups without auth token."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 401 Unauthorized."
+      },
+      {
+        "type": "action",
+        "description": "Call /app/expenses without auth token."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 401 Unauthorized."
+      },
+      {
+        "type": "action",
+        "description": "Call /app/dashboard without auth token."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 401 Unauthorized."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Retrieve User Profile with Valid Authentication",
+    "description": "Verify authenticated user can retrieve their profile information successfully.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and obtain auth token."
+      },
+      {
+        "type": "action",
+        "description": "Call /app/profile endpoint with valid auth token."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 200 and contains correct user profile details."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Update User Profile Successfully",
+    "description": "Verify that authenticated user can update their profile information correctly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and obtain auth token."
+      },
+      {
+        "type": "action",
+        "description": "Send update request to /app/profile with new user data and valid auth token."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 200 and user profile reflects updated data."
+      },
+      {
+        "type": "action",
+        "description": "Retrieve profile again to confirm changes are persisted."
+      },
+      {
+        "type": "assertion",
+        "description": "User profile data matches updated information."
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Create New Group Successfully",
+    "description": "Verify that an authenticated user can create a new expense group.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and obtain auth token."
+      },
+      {
+        "type": "action",
+        "description": "Call the group creation endpoint with valid group data."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 200 and group is created with correct details."
+      },
+      {
+        "type": "action",
+        "description": "Call groups listing endpoint to verify new group appears in user’s groups."
+      },
+      {
+        "type": "assertion",
+        "description": "Newly created group is listed."
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Add Members to Existing Group",
+    "description": "Verify adding valid members to an existing group works correctly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and obtain auth token."
+      },
+      {
+        "type": "action",
+        "description": "Create a new group."
+      },
+      {
+        "type": "action",
+        "description": "Call add member endpoint to add valid users to the group."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 200 indicating success."
+      },
+      {
+        "type": "action",
+        "description": "Retrieve group members list to confirm added members are present."
+      },
+      {
+        "type": "assertion",
+        "description": "Group members list includes newly added members."
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Attempt to Add Invalid Member to Group",
+    "description": "Verify error handling when adding a non-existent or invalid user to a group.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and create group."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to add a user with invalid/nonexistent ID to the group."
+      },
+      {
+        "type": "assertion",
+        "description": "Response returns appropriate error status (e.g. 400 or 404) and message."
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Add Expense to Group Successfully",
+    "description": "Verify that a user can add a new expense correctly associated with a group.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and obtain auth token."
+      },
+      {
+        "type": "action",
+        "description": "Create a group if needed."
+      },
+      {
+        "type": "action",
+        "description": "Send request to create an expense with valid group ID and expense details."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 200 and expense details are correctly stored."
+      },
+      {
+        "type": "action",
+        "description": "Retrieve expenses filtered by the group to confirm the new expense is listed."
+      },
+      {
+        "type": "assertion",
+        "description": "Expense appears in group’s expense list with correct details."
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Retrieve Expenses with Group Filtering",
+    "description": "Verify that retrieving expenses filtered by group returns only relevant entries.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and obtain auth token."
+      },
+      {
+        "type": "action",
+        "description": "Create multiple groups and add expenses to each."
+      },
+      {
+        "type": "action",
+        "description": "Call the expenses endpoint with group filter parameter for one group."
+      },
+      {
+        "type": "assertion",
+        "description": "Response contains only expenses related to the specified group."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Retrieve Dashboard Statistics Correctly",
+    "description": "Verify that the dashboard endpoint returns accurate statistics reflecting current user expenses and group activities.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in and obtain auth token."
+      },
+      {
+        "type": "action",
+        "description": "Populate user groups and expenses with sample data."
+      },
+      {
+        "type": "action",
+        "description": "Call /app/dashboard endpoint."
+      },
+      {
+        "type": "assertion",
+        "description": "Response status is 200."
+      },
+      {
+        "type": "assertion",
+        "description": "Dashboard data correctly aggregates expenses, group counts and provides accurate insights."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "CORS Headers Present on API Responses",
+    "description": "Verify that all API responses include correct CORS headers allowing frontend communication.",
+    "category": "security",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call any public or secured endpoint with a browser-like OPTIONS request."
+      },
+      {
+        "type": "assertion",
+        "description": "Response contains Access-Control-Allow-Origin header allowing expected origins."
+      },
+      {
+        "type": "assertion",
+        "description": "Response includes other required CORS headers like Access-Control-Allow-Methods and Access-Control-Allow-Headers."
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Local Development Environment Execution",
+    "description": "Verify that backend functions can be executed and debugged locally using Supabase CLI without errors.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Set up local environment variables as documented."
+      },
+      {
+        "type": "action",
+        "description": "Run Supabase CLI commands to start the local backend environment."
+      },
+      {
+        "type": "assertion",
+        "description": "Backend functions load and respond correctly to test requests without errors."
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Deployment Automation via npm Scripts",
+    "description": "Verify deployment to Supabase environment using provided npm automation scripts completes successfully.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Run npm deploy scripts as per documentation."
+      },
+      {
+        "type": "assertion",
+        "description": "Deployment completes without errors, backend is accessible and functioning post-deploy."
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Error Handling for Invalid API Requests",
+    "description": "Verify that invalid API requests return appropriate HTTP status codes and error messages.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send malformed requests to endpoints (e.g., missing JSON body, invalid parameters)."
+      },
+      {
+        "type": "assertion",
+        "description": "Check for appropriate 400-series errors with meaningful messages."
+      },
+      {
+        "type": "action",
+        "description": "Access endpoints with unsupported HTTP methods."
+      },
+      {
+        "type": "assertion",
+        "description": "Response should be 405 Method Not Allowed where applicable."
+      }
+    ]
+  }
+]

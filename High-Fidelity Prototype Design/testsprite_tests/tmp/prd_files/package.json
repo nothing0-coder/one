@@ -1,0 +1,24 @@
+{
+  "name": "spliteasy-backend",
+  "version": "1.0.0",
+  "description": "Backend Supabase functions for SplitEasy expense splitting application",
+  "main": "supabase/functions/server/index.tsx",
+  "scripts": {
+    "dev": "supabase functions serve",
+    "deploy": "supabase functions deploy server",
+    "logs": "supabase functions logs server"
+  },
+  "dependencies": {
+    "hono": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  },
+  "keywords": [
+    "supabase",
+    "edge-functions",
+    "typescript",
+    "hono",
+    "expense-splitting"
+  ]
+}

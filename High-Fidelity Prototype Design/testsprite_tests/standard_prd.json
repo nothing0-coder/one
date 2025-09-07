@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "project": "SplitEasy Expense Splitting Application Backend",
+    "date": "2025-09-05",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "SplitEasy Backend provides a scalable, secure, and efficient backend for the SplitEasy expense splitting application. It offers authentication, user profile management, group and expense tracking, and dashboard statistics through Supabase Edge Functions with a focus on real-time and secure operations.",
+  "core_goals": [
+    "Provide robust user authentication and session management using Supabase Auth.",
+    "Enable users to create, manage, and join groups for expense splitting.",
+    "Allow users to add, view, and manage expenses associated with groups.",
+    "Serve dashboard statistics to give users insights into their expenses and group activities.",
+    "Ensure security and data privacy by enforcing authentication on all critical endpoints.",
+    "Support local development and easy deployment for continuous integration and delivery."
+  ],
+  "key_features": [
+    "User authentication endpoints including signup, signin, and signout.",
+    "User profile retrieval and update functionality.",
+    "Group management endpoints for creating groups, adding members, and listing groups and group members.",
+    "Expense management endpoints for creating and retrieving expenses, with optional filtering by group.",
+    "Dashboard endpoint providing statistical insights about user expenses.",
+    "CORS-enabled Supabase Edge Function server using Hono framework on Deno runtime.",
+    "Local development support with Supabase CLI commands and environment variable management.",
+    "Deployment automation scripts via npm for easy deployment to Supabase environment."
+  ],
+  "user_flow_summary": [
+    "User signs up or logs in via authentication endpoints to obtain a session.",
+    "Authenticated user accesses the profile endpoint to view or update personal information.",
+    "User creates or views groups; group members can be added or listed via respective endpoints.",
+    "Within groups, users add expenses or retrieve expense lists to manage shared costs.",
+    "User accesses dashboard statistics to view insights on expenses and group activity.",
+    "Backend ensures all endpoints (except signup) are protected and enforce authentication.",
+    "Developers use local environment to test and iterate backend functions before deployment."
+  ],
+  "validation_criteria": [
+    "All secured endpoints return 401 Unauthorized if accessed without valid authentication.",
+    "User signup endpoint successfully creates new accounts with required fields.",
+    "Group creation correctly persists groups and allows valid members to be added.",
+    "Expenses are recorded accurately and retrieved correctly, including group-based filtering.",
+    "Dashboard statistics endpoint returns accurate and timely data reflecting current user activity.",
+    "Backend functions can be executed locally and deployed via provided npm scripts without errors.",
+    "CORS headers are present to allow frontend applications to communicate securely with backend.",
+    "Error handling returns appropriate HTTP status codes and messages for failure cases."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Supabase",
+      "Motion (Framer Motion)",
+      "Radix UI",
+      "Lucide React"
+    ],
+    "features": [
+      {
+        "name": "Authentication System",
+        "description": "User authentication with sign in and sign up functionality using Supabase",
+        "files": [
+          "src/components/AuthPage.tsx",
+          "src/contexts/AuthContext.tsx",
+          "src/utils/supabase/client.ts",
+          "src/utils/supabase/server.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Authentication API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/auth/signin": {
+              "post": {
+                "summary": "Sign in user",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "email": {
+                            "type": "string",
+                            "format": "email"
+                          },
+                          "password": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "email",
+                          "password"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Successfully signed in"
+                  },
+                  "400": {
+                    "description": "Invalid credentials"
+                  }
+                }
+              }
+            },
+            "/auth/signup": {
+              "post": {
+                "summary": "Sign up new user",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "email": {
+                            "type": "string",
+                            "format": "email"
+                          },
+                          "password": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "email",
+                          "password",
+                          "name"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Successfully created account"
+                  },
+                  "400": {
+                    "description": "Account creation failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Landing Page",
+        "description": "Marketing landing page with features showcase and call-to-action",
+        "files": [
+          "src/components/LandingPage.tsx",
+          "src/components/figma/ImageWithFallback.tsx"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Landing Page API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/": {
+              "get": {
+                "summary": "Get landing page",
+                "responses": {
+                  "200": {
+                    "description": "Landing page content"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Main Application Dashboard",
+        "description": "Main application interface with tabbed navigation for different features",
+        "files": [
+          "src/components/MainApp.tsx",
+          "src/components/Dashboard.tsx",
+          "src/components/Groups.tsx",
+          "src/components/Expenses.tsx",
+          "src/components/Profile.tsx"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Main App API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/app": {
+              "get": {
+                "summary": "Get main application",
+                "responses": {
+                  "200": {
+                    "description": "Main application interface"
+                  }
+                }
+              }
+            },
+            "/app/dashboard": {
+              "get": {
+                "summary": "Get dashboard data",
+                "responses": {
+                  "200": {
+                    "description": "Dashboard overview"
+                  }
+                }
+              }
+            },
+            "/app/groups": {
+              "get": {
+                "summary": "Get groups",
+                "responses": {
+                  "200": {
+                    "description": "List of expense groups"
+                  }
+                }
+              }
+            },
+            "/app/expenses": {
+              "get": {
+                "summary": "Get expenses",
+                "responses": {
+                  "200": {
+                    "description": "List of expenses"
+                  }
+                }
+              }
+            },
+            "/app/profile": {
+              "get": {
+                "summary": "Get user profile",
+                "responses": {
+                  "200": {
+                    "description": "User profile information"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "UI Component Library",
+        "description": "Comprehensive UI component library built with Radix UI and Tailwind CSS",
+        "files": [
+          "src/components/ui/button.tsx",
+          "src/components/ui/input.tsx",
+          "src/components/ui/card.tsx",
+          "src/components/ui/tabs.tsx",
+          "src/components/ui/badge.tsx",
+          "src/components/ui/sonner.tsx"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "UI Components API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/components": {
+              "get": {
+                "summary": "Get available UI components",
+                "responses": {
+                  "200": {
+                    "description": "List of UI components"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

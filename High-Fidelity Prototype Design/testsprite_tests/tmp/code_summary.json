@@ -1,0 +1,216 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "Supabase",
+    "Motion (Framer Motion)",
+    "Radix UI",
+    "Lucide React"
+  ],
+  "features": [
+    {
+      "name": "Authentication System",
+      "description": "User authentication with sign in and sign up functionality using Supabase",
+      "files": [
+        "src/components/AuthPage.tsx",
+        "src/contexts/AuthContext.tsx",
+        "src/utils/supabase/client.ts",
+        "src/utils/supabase/server.ts"
+      ],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Authentication API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/auth/signin": {
+            "post": {
+              "summary": "Sign in user",
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "email": {"type": "string", "format": "email"},
+                        "password": {"type": "string"}
+                      },
+                      "required": ["email", "password"]
+                    }
+                  }
+                }
+              },
+              "responses": {
+                "200": {
+                  "description": "Successfully signed in"
+                },
+                "400": {
+                  "description": "Invalid credentials"
+                }
+              }
+            }
+          },
+          "/auth/signup": {
+            "post": {
+              "summary": "Sign up new user",
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "email": {"type": "string", "format": "email"},
+                        "password": {"type": "string"},
+                        "name": {"type": "string"}
+                      },
+                      "required": ["email", "password", "name"]
+                    }
+                  }
+                }
+              },
+              "responses": {
+                "200": {
+                  "description": "Successfully created account"
+                },
+                "400": {
+                  "description": "Account creation failed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Landing Page",
+      "description": "Marketing landing page with features showcase and call-to-action",
+      "files": [
+        "src/components/LandingPage.tsx",
+        "src/components/figma/ImageWithFallback.tsx"
+      ],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Landing Page API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/": {
+            "get": {
+              "summary": "Get landing page",
+              "responses": {
+                "200": {
+                  "description": "Landing page content"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Main Application Dashboard",
+      "description": "Main application interface with tabbed navigation for different features",
+      "files": [
+        "src/components/MainApp.tsx",
+        "src/components/Dashboard.tsx",
+        "src/components/Groups.tsx",
+        "src/components/Expenses.tsx",
+        "src/components/Profile.tsx"
+      ],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Main App API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/app": {
+            "get": {
+              "summary": "Get main application",
+              "responses": {
+                "200": {
+                  "description": "Main application interface"
+                }
+              }
+            }
+          },
+          "/app/dashboard": {
+            "get": {
+              "summary": "Get dashboard data",
+              "responses": {
+                "200": {
+                  "description": "Dashboard overview"
+                }
+              }
+            }
+          },
+          "/app/groups": {
+            "get": {
+              "summary": "Get groups",
+              "responses": {
+                "200": {
+                  "description": "List of expense groups"
+                }
+              }
+            }
+          },
+          "/app/expenses": {
+            "get": {
+              "summary": "Get expenses",
+              "responses": {
+                "200": {
+                  "description": "List of expenses"
+                }
+              }
+            }
+          },
+          "/app/profile": {
+            "get": {
+              "summary": "Get user profile",
+              "responses": {
+                "200": {
+                  "description": "User profile information"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "UI Component Library",
+      "description": "Comprehensive UI component library built with Radix UI and Tailwind CSS",
+      "files": [
+        "src/components/ui/button.tsx",
+        "src/components/ui/input.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/tabs.tsx",
+        "src/components/ui/badge.tsx",
+        "src/components/ui/sonner.tsx"
+      ],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "UI Components API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/components": {
+            "get": {
+              "summary": "Get available UI components",
+              "responses": {
+                "200": {
+                  "description": "List of UI components"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

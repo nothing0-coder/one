@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "backendAuthType": "public",
+  "executionArgs": {
+    "projectName": "High-Fidelity Prototype Design",
+    "projectPath": "C:\\Users\\ntena\\one\\High-Fidelity Prototype Design",
+    "testIds": [],
+    "additionalInstruction": "Test the SplitEasy expense splitting application thoroughly, including authentication, landing page, main app navigation, and all UI components",
+    "envs": {
+      "API_KEY": "sk-user-d1tkm8RtsMpHNzzrCssrzN0tZ1Ml6Kyrb4jUcJwt7UpEKNIPpcgg3gw8cYVojxO4UxhayxaM-MaiZRgSei0sMzY8D3Jq7cNKz1fWkTS37QfcC6KiqlJLCbZ73R-hwBzfpw0"
+    }
+  }
+}
